@@ -1,5 +1,5 @@
 
-1. bat 修改系统时间
+1.bat 修改系统时间
 
 ``` bash
 @echo off
@@ -15,7 +15,7 @@ ping 127.1 -n 5 &gt;nul
 goto :a
 ``` 
 
-2. bat 守护进程
+2.bat 守护进程
 ``` bash
 @echo off
 
