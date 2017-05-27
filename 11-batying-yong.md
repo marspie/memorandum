@@ -1,7 +1,6 @@
 
 
-···
-
+``` bash
 @echo off
 
 :a
@@ -15,6 +14,5 @@ cmd /c time 12:35:00
 ping 127.1 -n 5 &gt;nul
 
 goto :a
-
-···
+``` 
 
