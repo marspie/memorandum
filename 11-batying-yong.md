@@ -53,3 +53,8 @@ echo Wscript.Sleep WScript.Arguments(0) >%tmp%\delay.vbs
 cscript //b //nologo %tmp%\delay.vbs 10000 
 goto checkstart
 ``` 
+
+3.bat kill进程
+``` bash
+taskkill /F /IM pis_server.exe
+``` 
