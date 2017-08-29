@@ -16,7 +16,7 @@
 * 4.数据库
 	* [3.1 数据库](11-batying-yong.md)
 * 5.Linux
-
+	* [5.1 数据库](11-batying-yong.md)
 * 6.工具
 	* [6.1 Git]
 		* [6.1.1  git](11-batying-yong.md)
