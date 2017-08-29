@@ -12,15 +12,15 @@
 		* [2.3.1 JAVA 基础](11-batying-yong.md)
 * 3.数据库
 	* [3.1 数据库]()
+* 4.工具
+	* [4.1 Git]
+		* [4.1.1  Git]()
+	* [4.2 Maven]
+		* [4.2.1  Maven]()
+	* [4.3 Gradle]
+		* [4.3.1  Gradle]()
 * 4.Linux
-	* [4.1 数据库]()
-* 5.工具
-	* [5.1 Git]
-		* [5.1.1  git]()
-	* [5.2 Maven]
-		* [5.2.1  git]()
-	* [5.3 Gradle]
-		* [5.3.1  git]()
-* 6.脚本语言
+	* [5.1 数据库]()
+* 6.Script
 	* [6.1 bat应用](11-batying-yong.md)
 	* [6.2 sh脚本](11-batying-yong.md)
