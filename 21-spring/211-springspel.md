@@ -114,32 +114,47 @@ boolean result1 = parser.parseExpression("'123' matches '\\d{3}'").getValue(bool
 
 1.类类型表达式
 
- 使用"T\(Type\)"来表示java.lang.Class实例，"Type"必须是类全限定名，"java.lang"包除外。
+使用"T\(Type\)"来表示java.lang.Class实例，"Type"必须是类全路径名，"java.lang"包除外。
 
 ```
 @Test
 public void testClassTypeExpression() {
-	ExpressionParser parser = new SpelExpressionParser();
-	// java.lang包类访问
-	Class<String> result1 = parser.parseExpression("T(String)").getValue(Class.class);
-	Assert.assertEquals(String.class, result1);
+    ExpressionParser parser = new SpelExpressionParser();
+    // java.lang包类访问
+    Class<String> result1 = parser.parseExpression("T(String)").getValue(Class.class);
+    Assert.assertEquals(String.class, result1);
 
-	// 其他包类访问
-	String expression2 = "T(org.springframework.expression.ExpressionParser)";
-	Class<String> result2 = parser.parseExpression(expression2).getValue(Class.class);
-	Assert.assertEquals(ExpressionParser.class, result2);
+    // 其他包类访问
+    String expression2 = "T(org.springframework.expression.ExpressionParser)";
+    Class<String> result2 = parser.parseExpression(expression2).getValue(Class.class);
+    Assert.assertEquals(ExpressionParser.class, result2);
 
-	// 类静态字段访问
-	int result3 = parser.parseExpression("T(Integer).MAX_VALUE").getValue(int.class);
-	Assert.assertEquals(Integer.MAX_VALUE, result3);
+    // 类静态字段访问
+    int result3 = parser.parseExpression("T(Integer).MAX_VALUE").getValue(int.class);
+    Assert.assertEquals(Integer.MAX_VALUE, result3);
 
-	// 类静态方法调用
-	int result4 = parser.parseExpression("T(Integer).parseInt('1')").getValue(int.class);
-	Assert.assertEquals(1, result4);
+    // 类静态方法调用
+    int result4 = parser.parseExpression("T(Integer).parseInt('1')").getValue(int.class);
+    Assert.assertEquals(1, result4);
 }
 ```
 
 2.类实例化
+
+ 类实例化同样使用java关键字“new”，类名必须是带包全路径名， java.lang包内的类型除外。
+
+```
+@Test
+public void testConstructorExpression() {
+	ExpressionParser parser = new SpelExpressionParser();
+
+	String result1 = parser.parseExpression("new String('haha')").getValue(String.class);
+	Assert.assertEquals("haha", result1);
+
+	Date result2 = parser.parseExpression("new java.util.Date()").getValue(Date.class);
+	Assert.assertNotNull(result2);
+}
+```
 
 3.instanceof表达式
 
