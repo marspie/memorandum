@@ -9,7 +9,7 @@
   * 2.2 Hibernate
   * 2.3 Mybatis   
 * 3.数据库
-  * [3.1 获取分组后某字段最大记录](31-mysql.md)
+  * [3.1 获取分组后某字段最大记录](31-mysql-group-field-biggest-record.md)
 * 4.Script
   * [4.1 bat脚本](41-bat_script.md)
   * [4.2 sh脚本](42-sh_script.md)
