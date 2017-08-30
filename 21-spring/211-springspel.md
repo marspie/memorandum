@@ -42,14 +42,14 @@ Object null1 = parser.parseExpression("null").getValue(Object.class);
 
 ```
 int result1 = parser.parseExpression("1+2-3*4/2").getValue(Integer.class);//-3
-int result11 = parser.parseExpression("4 div 3").getValue(Integer.class);//1  div等同 / 
+int result11 = parser.parseExpression("4 div 3").getValue(Integer.class);//1  div等同 / 不区分大小写
 ```
 
 * 求余
 
 ```
 int result2 = parser.parseExpression("4%3").getValue(Integer.class);//1
-int result22 = parser.parseExpression("4 MOD 3").getValue(Integer.class);//1
+int result22 = parser.parseExpression("4 MOD 3").getValue(Integer.class);//1 mod等同 % 不区分大小写 
 ```
 
 * 幂运算
