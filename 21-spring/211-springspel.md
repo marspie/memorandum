@@ -100,13 +100,15 @@ boolean result1 = parser.parseExpression("2>1?true:false").getValue(boolean.clas
 
 7.正则表达式
 
- 使用"string matches regex"
+使用"string matches regex"
 
 ```
 boolean result1 = parser.parseExpression("'123' matches '\\d{3}'").getValue(boolean.class); //true
 ```
 
 8.括号优先级表达式
+
+ 使用"\(表达式\)"构造，括号里的具有高优先级。
 
 ## 类相关表达式
 
