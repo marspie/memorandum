@@ -158,13 +158,35 @@ public void testConstructorExpression() {
 
 3.instanceof表达式
 
- SpEL支持instanceof运算符，跟Java内使用同义；
+SpEL支持instanceof运算符，跟Java内使用同义；
 
 ```
 boolean result1 = parser.parseExpression("'haha' instanceof T(String)").getValue(boolean.class); // true
 ```
 
 4.变量定义及引用
+
+ 变量定义通过EvaluationContext接口的setVariable\(variableName, value\)方法定义；在表达式中使用“\#variableName”引用；除了引用自定义变量，SpE还允许引用根对象及当前上下文对象，使用“\#root”引用根对象，使用“\#this”引用当前上下文对象；
+
+```
+@Test
+public void testVariableExpression() {
+	ExpressionParser parser = new SpelExpressionParser();
+	EvaluationContext context = new StandardEvaluationContext();
+	context.setVariable("variable", "haha");
+	context.setVariable("variable", "haha");
+
+	String result1 = parser.parseExpression("#variable").getValue(context, String.class);
+	Assert.assertEquals("haha", result1);
+
+	context = new StandardEvaluationContext("haha");
+	String result2 = parser.parseExpression("#root").getValue(context, String.class);
+	Assert.assertEquals("haha", result2);
+
+	String result3 = parser.parseExpression("#this").getValue(context, String.class);
+	Assert.assertEquals("haha", result3);
+}
+```
 
 5.自定义函数
 
