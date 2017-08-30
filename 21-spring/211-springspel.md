@@ -2,9 +2,7 @@
 
 ## 基本表达式
 
-【 SpEL支持的字面量包括：字符串、数字类型（int、long、float、double）、布尔类型、null类型】
-
-1.字面量表达式
+1.字面量表达式    【 SpEL支持的字面量包括：字符串、数字类型（int、long、float、double）、布尔类型、null类型】
 
 * 字符串 
 
@@ -38,7 +36,9 @@ boolean false1 = parser.parseExpression("false").getValue(boolean.class);
 Object null1 = parser.parseExpression("null").getValue(Object.class);
 ```
 
-2.算数运算表达式
+2.算数运算表达式    【支持加\(+\)、减\(-\)、乘\(\*\)、除\(/\)、求余（%）、幂（^）运算】
+
+
 
 3.关系表达式
 
