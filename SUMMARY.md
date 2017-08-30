@@ -6,7 +6,7 @@
   * [1.2 生成者消费者](12-Producer_Consumer.md)
 * 2.框架
   * [2.1 Spring](21-spring.md)
-    * [2.1.1 spring\_spel](21-spring/211-springspel.md)
+    * [2.1.1 SpEl表达式](21-spring/211-springspel.md)
   * [2.2 Hibernate](22-hibernate.md)
   * [2.3 Mybatis](23-mybatis.md)
 * 3.数据库
