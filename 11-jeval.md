@@ -62,9 +62,9 @@ public class JevalTest {
 }
 ```
 
-# Spring Expression
+# Spring 表达式语言之 SpEL
 
-Maven引入
+spring ExpressionParser 同样可以用于数学表达式的计算，Maven引入
 
 ```
 <dependency>
@@ -72,6 +72,45 @@ Maven引入
     <artifactId>spring-context</artifactId>
     <version>4.3.0.RELEASE</version>
 </dependency>
+```
+
+* #### 使用示例
+
+```
+import org.junit.Test;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
+public class ExpressionParserTest {
+
+	@Test
+	public void test1() {
+		ExpressionParser parser = new SpelExpressionParser();
+		// 解析表达式'Hello '+' World!'
+		Expression exp = parser.parseExpression("'Hello '+' World!'");
+		// 取出解析结果
+		String result = exp.getValue().toString();
+		// 输出结果
+		System.out.println(result);
+	}
+	
+	@Test
+	public void test2() {
+		ExpressionParser parser = new SpelExpressionParser();
+		Double five = parser.parseExpression("1+2*3-2/1").getValue(Double.class); //直接计算字符串
+		System.out.println(five);
+		
+		//定义数字变量
+		StandardEvaluationContext context = new StandardEvaluationContext();
+		context.setVariable("a", 1);
+		context.setVariable("b", 2);
+	 
+		int result = (int) parser.parseExpression("#a+#b*3-2/2").getValue(context); 
+		System.out.println(result);
+	}
+}
 ```
 
 
