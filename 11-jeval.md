@@ -85,31 +85,31 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 public class ExpressionParserTest {
 
-	@Test
-	public void test1() {
-		ExpressionParser parser = new SpelExpressionParser();
-		// 解析表达式'Hello '+' World!'
-		Expression exp = parser.parseExpression("'Hello '+' World!'");
-		// 取出解析结果
-		String result = exp.getValue().toString();
-		// 输出结果
-		System.out.println(result);
-	}
-	
-	@Test
-	public void test2() {
-		ExpressionParser parser = new SpelExpressionParser();
-		Double five = parser.parseExpression("1+2*3-2/1").getValue(Double.class); //直接计算字符串
-		System.out.println(five);
-		
-		//定义数字变量
-		StandardEvaluationContext context = new StandardEvaluationContext();
-		context.setVariable("a", 1);
-		context.setVariable("b", 2);
-	 
-		int result = (int) parser.parseExpression("#a+#b*3-2/2").getValue(context); 
-		System.out.println(result);
-	}
+    @Test
+    public void test1() {
+        ExpressionParser parser = new SpelExpressionParser();
+        // 解析表达式'Hello '+' World!'
+        Expression exp = parser.parseExpression("'Hello '+' World!'");
+        // 取出解析结果
+        String result = exp.getValue().toString();
+        // 输出结果
+        System.out.println(result);
+    }
+
+    @Test
+    public void test2() {
+        ExpressionParser parser = new SpelExpressionParser();
+        Double five = parser.parseExpression("1+2*3-2/1").getValue(Double.class); //直接计算字符串
+        System.out.println(five);
+
+        //定义数字变量
+        StandardEvaluationContext context = new StandardEvaluationContext();
+        context.setVariable("a", 1);
+        context.setVariable("b", 2);
+
+        int result = (int) parser.parseExpression("#a+#b*3-2/2").getValue(context); 
+        System.out.println(result);
+    }
 }
 ```
 
