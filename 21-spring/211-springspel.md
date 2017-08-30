@@ -26,6 +26,12 @@ long hex2 = parser.parseExpression("0xaL").getValue(long.class);
 ```
 
 * 布尔
+
+```
+boolean true1 = parser.parseExpression("true").getValue(boolean.class);
+boolean false1 = parser.parseExpression("false").getValue(boolean.class);
+```
+
 * null
 
 2.算数运算表达式
