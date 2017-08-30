@@ -62,5 +62,17 @@ public class JevalTest {
 }
 ```
 
+# Spring Expression
+
+Maven引入
+
+```
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>4.3.0.RELEASE</version>
+</dependency>
+```
+
 
 
