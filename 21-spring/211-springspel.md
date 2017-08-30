@@ -76,12 +76,19 @@ boolean result3 = parser.parseExpression("10 eq 0").getValue(boolean.class);//fa
 
 ```
 boolean result1 = parser.parseExpression("2>1 and (!true or !false)").getValue(boolean.class); //true
-boolean result1 = parser.parseExpression("2>1 && (!true || !false)").getValue(boolean.class);//true 
+boolean result1 = parser.parseExpression("2>1 && (!true || !false)").getValue(boolean.class);//true
 ```
 
 注：同样支持Java中的 && 和 \|\| 。
 
 5.字符串连接及截取表达式
+
+ 使用"+"进行字符串连接，使用"'String'\[index\]"来截取一个字符,"'world\[1\]'" 返回 o
+
+```
+String result1 = parser.parseExpression("'Hello ' + 'world'").getValue(String.class);
+String result2 = parser.parseExpression("'Hello ' + 'world'[1]").getValue(String.class); //Hello o
+```
 
 6.三目运算及Elivis运算表达式
 
