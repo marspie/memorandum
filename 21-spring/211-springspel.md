@@ -34,6 +34,10 @@ boolean false1 = parser.parseExpression("false").getValue(boolean.class);
 
 * null
 
+```
+Object null1 = parser.parseExpression("null").getValue(Object.class);
+```
+
 2.算数运算表达式
 
 3.关系表达式
