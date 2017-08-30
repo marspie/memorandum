@@ -7,7 +7,7 @@
 * 2.框架
   * [2.1 Spring](21-spring.md)
   * [2.2 Hibernate](22-hibernate.md)
-  * [2.3 Mybatis   ](23-mybatis.md)
+  * [2.3 Mybatis](23-mybatis.md)
 * 3.数据库
   * [3.1 获取分组后某字段最大记录](31-mysql-group-field-biggest-record.md)
 * 4.Script
