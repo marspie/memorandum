@@ -14,11 +14,11 @@
   * [4.1 bat脚本](41-bat_script.md)
   * [4.2 sh脚本](42-sh_script.md)
 * [5.工具](5gong-ju.md)
-  * [\[5.1 Git\]](51-git.md)
+  * [5.1 Git](51-git.md)
     * [5.1.1  Git](51-git/511-git.md)
-  * [\[5.2 Maven\]](52-maven.md)
+  * [5.2 Maven](52-maven.md)
     * [5.2.1  Maven](52-maven/521-maven.md)
-  * [\[5.3 Gradle\]](53-gradle.md)
+  * [5.3 Gradle](53-gradle.md)
     * 5.3.1  Gradle
 * 6.Linux
 * [7.其他](7other.md)
