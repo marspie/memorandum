@@ -190,26 +190,48 @@ public void testVariableExpression() {
 
 5.自定义函数
 
- 目前只支持类静态方法注册为自定义函数；SpEL使用StandardEvaluationContext的registerFunction方法进行注册自定义函数，其实完全可以使用setVariable代替，两者其实本质是一样的；
+目前只支持类静态方法注册为自定义函数；SpEL使用StandardEvaluationContext的registerFunction方法进行注册自定义函数，其实完全可以使用setVariable代替，两者其实本质是一样的；
 
 ```
 @Test
 public void testFunctionExpression() throws SecurityException, NoSuchMethodException {
-	ExpressionParser parser = new SpelExpressionParser();
-	StandardEvaluationContext context = new StandardEvaluationContext();
+    ExpressionParser parser = new SpelExpressionParser();
+    StandardEvaluationContext context = new StandardEvaluationContext();
 
-	Method parseInt = Integer.class.getDeclaredMethod("parseInt", String.class);
-	context.registerFunction("parseInt", parseInt);
-	context.setVariable("parseInt2", parseInt);
+    Method parseInt = Integer.class.getDeclaredMethod("parseInt", String.class);
+    context.registerFunction("parseInt", parseInt);
+    context.setVariable("parseInt2", parseInt);
 
-	String expression1 = "#parseInt('3') == #parseInt2('3')";
-	boolean result1 = parser.parseExpression(expression1).getValue(context, boolean.class);
-	Assert.assertEquals(true, result1);
+    String expression1 = "#parseInt('3') == #parseInt2('3')";
+    boolean result1 = parser.parseExpression(expression1).getValue(context, boolean.class);
+    Assert.assertEquals(true, result1);
 
 }
 ```
 
 6.赋值表达式
+
+ SpEL即允许给自定义变量赋值，也允许给跟对象赋值，直接使用“\#variableName=value”即可赋值：
+
+```
+@Test
+public void testAssignExpression() {
+	ExpressionParser parser = new SpelExpressionParser();
+	// 1.给root对象赋值
+	EvaluationContext context = new StandardEvaluationContext("aaaa");
+
+	String result1 = parser.parseExpression("#root='aaaaa'").getValue(context, String.class);
+	Assert.assertEquals("aaaaa", result1);
+
+	String result2 = parser.parseExpression("#this='aaaa'").getValue(context, String.class);
+	Assert.assertEquals("aaaa", result2);
+
+	// 2.给自定义变量赋值
+	context.setVariable("#variable", "variable");
+	String result3 = parser.parseExpression("#variable=#root").getValue(context, String.class);
+	Assert.assertEquals("aaaa", result3);
+}
+```
 
 7.对象属性存取及安全导航表达式
 
