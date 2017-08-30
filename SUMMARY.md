@@ -21,7 +21,6 @@
   * [\[5.3 Gradle\]](53-gradle.md)
     * 5.3.1  Gradle
 * 6.Linux
-  * 6.1 数据库
 * [7.其他](7other.md)
   * [7.1 c++](7other/71-c++.md)
     * [7.1.1 set](7other/71-c++/711-set.md)
