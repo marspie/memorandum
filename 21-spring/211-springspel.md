@@ -38,6 +38,16 @@ Object null1 = parser.parseExpression("null").getValue(Object.class);
 
 2.算数运算表达式    【支持加\(+\)、减\(-\)、乘\(\*\)、除\(/\)、求余（%）、幂（^）运算】
 
+* 加减乘除
+
+```
+int result1 = parser.parseExpression("1+2-3*4/2").getValue(Integer.class);//-3
+```
+
+* 求余
+
+* 幂运算
+
 3.关系表达式
 
 4.逻辑表达式
