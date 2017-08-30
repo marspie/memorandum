@@ -49,13 +49,13 @@ int result11 = parser.parseExpression("4 div 3").getValue(Integer.class);//1  di
 
 ```
 int result2 = parser.parseExpression("4%3").getValue(Integer.class);//1
-int result22 = parser.parseExpression("4 MOD 3").getValue(Integer.class);//1 mod等同 % 不区分大小写 
+int result22 = parser.parseExpression("4 MOD 3").getValue(Integer.class);//1 mod等同 % 不区分大小写
 ```
 
 * 幂运算
 
 ```
-
+int result3 = parser.parseExpression("2^3").getValue(Integer.class);//8
 ```
 
 3.关系表达式
