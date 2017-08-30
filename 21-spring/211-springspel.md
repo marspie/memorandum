@@ -83,7 +83,7 @@ boolean result1 = parser.parseExpression("2>1 && (!true || !false)").getValue(bo
 
 5.字符串连接及截取表达式
 
- 使用"+"进行字符串连接，使用"'String'\[index\]"来截取一个字符,"'world\[1\]'" 返回 o
+使用"+"进行字符串连接，使用"'String'\[index\]"来截取一个字符,"'world\[1\]'" 返回 o
 
 ```
 String result1 = parser.parseExpression("'Hello ' + 'world'").getValue(String.class);
@@ -91,6 +91,12 @@ String result2 = parser.parseExpression("'Hello ' + 'world'[1]").getValue(String
 ```
 
 6.三目运算及Elivis运算表达式
+
+ 三目运算符 "表达式1?表达式2:表达式3"
+
+```
+boolean result1 = parser.parseExpression("2>1?true:false").getValue(boolean.class); //true
+```
 
 7.正则表达式
 
