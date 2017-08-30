@@ -92,13 +92,19 @@ String result2 = parser.parseExpression("'Hello ' + 'world'[1]").getValue(String
 
 6.三目运算及Elivis运算表达式
 
- 三目运算符 "表达式1?表达式2:表达式3"
+三目运算符 "表达式1?表达式2:表达式3"
 
 ```
 boolean result1 = parser.parseExpression("2>1?true:false").getValue(boolean.class); //true
 ```
 
 7.正则表达式
+
+ 使用"string matches regex"
+
+```
+boolean result1 = parser.parseExpression("'123' matches '\\d{3}'").getValue(boolean.class); //true
+```
 
 8.括号优先级表达式
 
