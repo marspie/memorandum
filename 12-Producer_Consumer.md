@@ -26,7 +26,7 @@ public class ProducerConsumer {
         service.submit(c);
         service.submit(c2);
         service.submit(c3);
-        
+
     }
 
     /**
@@ -131,6 +131,107 @@ public class ProducerConsumer {
     }
 
 }
+```
+
+实现二
+
+```
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class CusAndPro {
+	 
+    private int queueSize = 10 ;
+    private BlockingQueue<Product> queue = new LinkedBlockingQueue<Product>(queueSize);
+     
+    public static void main(String[] args) {
+        CusAndPro cap = new CusAndPro();
+        Consumer cus = cap.new Consumer();
+        Producer pro = cap.new Producer();
+        Thread cusT = new Thread(cus);
+        Thread proT = new Thread(pro);
+         
+        proT.start();
+        cusT.start();
+    }
+    /**
+     * 消费者
+     */
+    class Consumer implements Runnable{
+ 
+        @Override
+        public void run() {
+            cousume();
+        }
+ 
+        private void cousume() {
+            while(true){
+                synchronized (queue) {
+                    while(queue.size() ==0){
+                        try {
+                            System.out.println("队列空，等待数据。。。");
+                            queue.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                            queue.notify();
+                        }
+                    }
+                     
+                    Product  p = queue.poll() ;
+                    queue.notify();
+                    System.out.println("从队列中取走一个" + p + "，队列中剩余"+queue.size()+"个");
+                }
+            }
+        }
+         
+    }
+    /**
+     * 生产者
+     */
+    class Producer implements Runnable{
+ 
+        @Override
+        public void run() {
+            produce();
+        }
+ 
+        private void produce() {
+            while(true){
+                synchronized(queue){
+                    while(queue.size() == queueSize){
+                        try {
+                            System.out.println("队列已满，等待空余的空间");
+                            queue.wait();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                            queue.notify();
+                        }
+                    }
+                    
+                    Product p = new Product((int) (Math.random() * 10000));
+					queue.offer(p);   // 每次插入一个元素
+                    queue.notify();
+                    System.out.println("向队列取中插入一个" + p + "，队列剩余空间："+(queueSize-queue.size()));
+                }
+            }
+        }
+    }
+    
+    /**
+     * 产品
+     */
+    class Product {
+    	private int id;
+    	
+    	 public Product(int id) {
+             this.id = id;
+         }
+
+         public String toString() {
+             return "产品：" + this.id;
+         }
+    }
+} 
 ```
 
 
