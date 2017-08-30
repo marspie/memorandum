@@ -166,29 +166,48 @@ boolean result1 = parser.parseExpression("'haha' instanceof T(String)").getValue
 
 4.变量定义及引用
 
- 变量定义通过EvaluationContext接口的setVariable\(variableName, value\)方法定义；在表达式中使用“\#variableName”引用；除了引用自定义变量，SpE还允许引用根对象及当前上下文对象，使用“\#root”引用根对象，使用“\#this”引用当前上下文对象；
+变量定义通过EvaluationContext接口的setVariable\(variableName, value\)方法定义；在表达式中使用“\#variableName”引用；除了引用自定义变量，SpE还允许引用根对象及当前上下文对象，使用“\#root”引用根对象，使用“\#this”引用当前上下文对象；
 
 ```
 @Test
 public void testVariableExpression() {
-	ExpressionParser parser = new SpelExpressionParser();
-	EvaluationContext context = new StandardEvaluationContext();
-	context.setVariable("variable", "haha");
-	context.setVariable("variable", "haha");
+    ExpressionParser parser = new SpelExpressionParser();
+    EvaluationContext context = new StandardEvaluationContext();
+    context.setVariable("variable", "haha");
+    context.setVariable("variable", "haha");
 
-	String result1 = parser.parseExpression("#variable").getValue(context, String.class);
-	Assert.assertEquals("haha", result1);
+    String result1 = parser.parseExpression("#variable").getValue(context, String.class);
+    Assert.assertEquals("haha", result1);
 
-	context = new StandardEvaluationContext("haha");
-	String result2 = parser.parseExpression("#root").getValue(context, String.class);
-	Assert.assertEquals("haha", result2);
+    context = new StandardEvaluationContext("haha");
+    String result2 = parser.parseExpression("#root").getValue(context, String.class);
+    Assert.assertEquals("haha", result2);
 
-	String result3 = parser.parseExpression("#this").getValue(context, String.class);
-	Assert.assertEquals("haha", result3);
+    String result3 = parser.parseExpression("#this").getValue(context, String.class);
+    Assert.assertEquals("haha", result3);
 }
 ```
 
 5.自定义函数
+
+ 目前只支持类静态方法注册为自定义函数；SpEL使用StandardEvaluationContext的registerFunction方法进行注册自定义函数，其实完全可以使用setVariable代替，两者其实本质是一样的；
+
+```
+@Test
+public void testFunctionExpression() throws SecurityException, NoSuchMethodException {
+	ExpressionParser parser = new SpelExpressionParser();
+	StandardEvaluationContext context = new StandardEvaluationContext();
+
+	Method parseInt = Integer.class.getDeclaredMethod("parseInt", String.class);
+	context.registerFunction("parseInt", parseInt);
+	context.setVariable("parseInt2", parseInt);
+
+	String expression1 = "#parseInt('3') == #parseInt2('3')";
+	boolean result1 = parser.parseExpression(expression1).getValue(context, boolean.class);
+	Assert.assertEquals(true, result1);
+
+}
+```
 
 6.赋值表达式
 
