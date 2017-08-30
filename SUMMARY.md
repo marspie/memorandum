@@ -12,7 +12,7 @@
   * \[2.3 Mybatis\]    
     * [2.3.1 JAVA 基础](11-batying-yong.md)
 * 3.数据库
-  * [3.1 mysql](31-mysql.md)
+  * [3.1 获取分组后某字段最大记录](31-mysql.md)
 * 4.Script
   * [4.1 bat脚本](41-bat_script.md)
   * [4.2 sh脚本](42-sh_script.md)
