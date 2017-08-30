@@ -76,7 +76,10 @@ boolean result3 = parser.parseExpression("10 eq 0").getValue(boolean.class);//fa
 
 ```
 boolean result1 = parser.parseExpression("2>1 and (!true or !false)").getValue(boolean.class); //true
+boolean result1 = parser.parseExpression("2>1 && (!true || !false)").getValue(boolean.class);//true 
 ```
+
+注：同样支持Java中的 && 和 \|\| 。
 
 5.字符串连接及截取表达式
 
