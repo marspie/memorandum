@@ -6,7 +6,27 @@
 
 1.字面量表达式
 
+* 字符串 
 
+```
+ExpressionParser parser = new SpelExpressionParser();
+String str1 = parser.parseExpression("'Hello World!'").getValue(String.class);
+String str2 = parser.parseExpression("\"Hello World!\"").getValue(String.class);
+```
+
+* 数字
+
+```
+int int1 = parser.parseExpression("1").getValue(Integer.class);
+long long1 = parser.parseExpression("-1L").getValue(long.class);
+float float1 = parser.parseExpression("1.1").getValue(Float.class);
+double double1 = parser.parseExpression("1.1E+2").getValue(double.class);
+int hex1 = parser.parseExpression("0xa").getValue(Integer.class);
+long hex2 = parser.parseExpression("0xaL").getValue(long.class);
+```
+
+* 布尔
+* null
 
 2.算数运算表达式
 
