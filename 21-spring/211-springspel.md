@@ -60,6 +60,18 @@ int result3 = parser.parseExpression("2^3").getValue(Integer.class);//8
 
 3.关系表达式
 
+等于（==）、不等于\(!=\)、大于\(&gt;\)、大于等于\(&gt;=\)、小于\(&lt;\)、小于等于\(&lt;=\)，区间\(between\)运算
+
+ between 运算符右边操作数必须是列表类型,且只能包含2个元素。第一个元素为开始，第二个元素为结束，区间运算是包含边界值的,
+
+ 同样提供了等价的“EQ” 、“NE”、 “GT”、“GE”、 “LT” 、“LE”来表示等于、不等于、大于、大于等于、小于、小于等于，不区分大小写.
+
+```
+boolean result = parser.parseExpression("1>2").getValue(boolean.class);//false
+boolean result2 = parser.parseExpression("10 between {1, 20}").getValue(boolean.class);//true
+boolean result3 = parser.parseExpression("10 eq 0").getValue(boolean.class);//false
+```
+
 4.逻辑表达式
 
 5.字符串连接及截取表达式
