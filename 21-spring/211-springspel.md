@@ -141,22 +141,28 @@ public void testClassTypeExpression() {
 
 2.类实例化
 
- 类实例化同样使用java关键字“new”，类名必须是带包全路径名， java.lang包内的类型除外。
+类实例化同样使用java关键字“new”，类名必须是带包全路径名， java.lang包内的类型除外。
 
 ```
 @Test
 public void testConstructorExpression() {
-	ExpressionParser parser = new SpelExpressionParser();
+    ExpressionParser parser = new SpelExpressionParser();
 
-	String result1 = parser.parseExpression("new String('haha')").getValue(String.class);
-	Assert.assertEquals("haha", result1);
+    String result1 = parser.parseExpression("new String('haha')").getValue(String.class);
+    Assert.assertEquals("haha", result1);
 
-	Date result2 = parser.parseExpression("new java.util.Date()").getValue(Date.class);
-	Assert.assertNotNull(result2);
+    Date result2 = parser.parseExpression("new java.util.Date()").getValue(Date.class);
+    Assert.assertNotNull(result2);
 }
 ```
 
 3.instanceof表达式
+
+ SpEL支持instanceof运算符，跟Java内使用同义；
+
+```
+boolean result1 = parser.parseExpression("'haha' instanceof T(String)").getValue(boolean.class); // true
+```
 
 4.变量定义及引用
 
