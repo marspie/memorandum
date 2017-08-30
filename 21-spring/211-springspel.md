@@ -211,29 +211,48 @@ public void testFunctionExpression() throws SecurityException, NoSuchMethodExcep
 
 6.赋值表达式
 
- SpEL即允许给自定义变量赋值，也允许给跟对象赋值，直接使用“\#variableName=value”即可赋值：
+SpEL即允许给自定义变量赋值，也允许给跟对象赋值，直接使用“\#variableName=value”即可赋值：
 
 ```
 @Test
 public void testAssignExpression() {
-	ExpressionParser parser = new SpelExpressionParser();
-	// 1.给root对象赋值
-	EvaluationContext context = new StandardEvaluationContext("aaaa");
+    ExpressionParser parser = new SpelExpressionParser();
+    // 1.给root对象赋值
+    EvaluationContext context = new StandardEvaluationContext("aaaa");
 
-	String result1 = parser.parseExpression("#root='aaaaa'").getValue(context, String.class);
-	Assert.assertEquals("aaaaa", result1);
+    String result1 = parser.parseExpression("#root='aaaaa'").getValue(context, String.class);
+    Assert.assertEquals("aaaaa", result1);
 
-	String result2 = parser.parseExpression("#this='aaaa'").getValue(context, String.class);
-	Assert.assertEquals("aaaa", result2);
+    String result2 = parser.parseExpression("#this='aaaa'").getValue(context, String.class);
+    Assert.assertEquals("aaaa", result2);
 
-	// 2.给自定义变量赋值
-	context.setVariable("#variable", "variable");
-	String result3 = parser.parseExpression("#variable=#root").getValue(context, String.class);
-	Assert.assertEquals("aaaa", result3);
+    // 2.给自定义变量赋值
+    context.setVariable("#variable", "variable");
+    String result3 = parser.parseExpression("#variable=#root").getValue(context, String.class);
+    Assert.assertEquals("aaaa", result3);
 }
 ```
 
 7.对象属性存取及安全导航表达式
+
+ 对象属性获取非常简单，即使用如"a.property.property"这种点缀式获取，SpEL对于属性名首字母是不区分大小写的；SpEL还引入了Groovy语言中的安全导航运算符"\(对象\|属性\)?.属性"，用来避免但“?.”前边的表达式为null时抛出空指针异常，而是返回null；修改对象属性值则可以通过赋值表达式或Expression接口的setValue方法修改
+
+```
+@Test
+public void testPropertyExpression() {
+	ExpressionParser parser = new SpelExpressionParser();
+	// 1.访问root对象属性
+	Date date = new Date();
+
+	StandardEvaluationContext context = new StandardEvaluationContext(date);
+
+	int result1 = parser.parseExpression("Year").getValue(context, int.class);
+	Assert.assertEquals(date.getYear(), result1);
+
+	int result2 = parser.parseExpression("year").getValue(context, int.class);
+	Assert.assertEquals(date.getYear(), result2);
+}
+```
 
 8.对象方法调用
 
