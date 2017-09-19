@@ -16,5 +16,52 @@
 
 **创建存储过程**
 
+存储过程proc\_add功能很简单，两个整型输入参数a和b，一个整型输出参数sum，功能就是计算输入参数a和b的结果，赋值给输出参数sum；
+
+    DROP PROCEDURE IF EXISTS `proc_add`;
+    DELIMITER ;;
+    CREATE DEFINER=`root`@`localhost` PROCEDURE `proc_add`(IN a INT, IN b INT, OUT SUM INT)
+    BEGIN
+        #Routine body goes here...
+
+        DECLARE c INT;
+        IF a IS NULL THEN SET a = 0; 
+        END IF;
+
+        IF b IS NULL THEN SET b = 0;
+        END IF;
+
+        SET SUM  = a + b;
+    END
+    ;;
+    DELIMITER ;
+
+_调用_
+
+```
+SET @b=5;
+CALL proc_add(2,@b,@s);
+SELECT @s AS SUM;
+```
+
+_不带参存储过程_
+
+    DROP PROCEDURE IF EXISTS `pro_query`;
+    DELIMITER ;;
+    CREATE DEFINER=`root`@`%` PROCEDURE `pro_query`()
+    BEGIN
+    	#Routine body goes here...
+    	SELECT 1;
+
+    END;;
+
+    DELIMITER ;     
+
+调用
+
+```
+CALL pro_query()
+```
+
 
 
