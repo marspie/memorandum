@@ -12,6 +12,7 @@
   * [2.3 Mybatis](23-mybatis.md)
 * 3.数据库
   * [3.1 获取分组后某字段最大记录](31-mysql-group-field-biggest-record.md)
+  * [3.2 存储过程](32-cun-chu-guo-cheng.md)
 * 4.Script
   * [4.1 bat脚本](41-bat_script.md)
   * [4.2 sh脚本](42-sh_script.md)
