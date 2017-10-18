@@ -1,7 +1,6 @@
-
 1.bat 修改系统时间
 
-``` bash
+```bash
 @echo off
 
 :a
@@ -13,10 +12,11 @@ cmd /c time 12:35:00
 ping 127.1 -n 5 &gt;nul
 
 goto :a
-``` 
+```
 
 2.bat 守护进程
-``` bash
+
+```bash
 @echo off
 
 set _task=pis_server.exe
@@ -28,7 +28,7 @@ for /f "tokens=5" %%n in ('qprocess.exe ^| find "%_task%" ') do (
  if %%n==%_task% (goto checkag) else goto startsvr
 )
 
- 
+
 
 :startsvr
 echo %time% 
@@ -52,9 +52,38 @@ echo %time% 程序运行正常,10秒后继续检查..
 echo Wscript.Sleep WScript.Arguments(0) >%tmp%\delay.vbs 
 cscript //b //nologo %tmp%\delay.vbs 10000 
 goto checkstart
-``` 
+```
 
 3.bat kill进程
-``` bash
+
+```bash
 taskkill /F /IM pis_server.exe
-``` 
+```
+
+4.bat 合并文件，修改文件编码
+
+```
+@echo off
+set "指定文件=ground_pids_database.sql"
+echo 开始合并SQL ...
+echo create_db.sql
+type create_db.sql > temp.sql
+echo create_table.sql
+type create_table.sql >>temp.sql
+cd MYSQL
+type *.sql >> ../init_all.sql
+cd ..
+echo.
+type init_all.sql >>temp.sql
+echo create_procedure.sql
+type create_procedure.sql >>temp.sql
+echo.
+iconv.exe -f GBK -t UTF-8 temp.sql > %指定文件%
+echo 合并完成.
+del init_all.sql
+del temp.sql
+pause
+```
+
+
+

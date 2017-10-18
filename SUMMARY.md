@@ -22,7 +22,7 @@
   * [5.2 Maven](52-maven.md)
     * [5.2.1  Maven](52-maven/521-maven.md)
   * [5.3 Gradle](53-gradle.md)
-* 6.Linux
+* [6.Linux](6linux.md)
 * [7.其他](7other.md)
   * [7.1 c++](7other/71-c++.md)
     * [7.1.1 set](7other/71-c++/711-set.md)
